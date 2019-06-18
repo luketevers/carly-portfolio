@@ -7,6 +7,6 @@ const Title = styled.h1`
     font-weight: 700;
 `;
 
-const App = () => <Title>React Bolt</Title>;
+const App = () => <Title>Hello World</Title>;
 
 export default App;

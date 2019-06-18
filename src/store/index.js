@@ -1,21 +1,12 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
+import rootReducer from './reducers';
+import { getPages } from './actions/get-pages';
+import { getAppData } from './actions/get-app-data';
 
-import rootReducer from '../reducers';
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
-const middleware = applyMiddleware(thunk, logger);
-
-const reduxDevTools =
-    window.__REDUX_DEVTOOLS_EXTENSION__ &&
-    window.__REDUX_DEVTOOLS_EXTENSION__();
-
-const store = createStore(
-    rootReducer,
-    compose(
-        middleware,
-        reduxDevTools
-    )
-);
+store.dispatch(getPages());
+store.dispatch(getAppData());
 
 export default store;
